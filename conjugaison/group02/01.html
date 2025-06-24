@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by anonymous (http://jsbin.com/nanugaruca/5/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài kiểm tra: Động từ Nhóm 2 (-IR)</title>
+    <style>
+        /* CSS để làm cho trang kiểm tra đẹp hơn */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95em;
+            color: #555;
+        }
+        
+        .info-header p {
+            margin: 0;
+        }
+
+        .quiz-status-bar {
+            position: sticky;
+            top: 0;
+            background-color: #4a5a7b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            z-index: 1000;
+        }
+
+        .quiz-status-bar h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        #score-display, #timer-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: #ffffff;
+            color: #4a5a7b;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            max-width: 500px;
+        }
+
+        .answers label:hover {
+            background-color: #e9ecef;
+        }
+
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .validate-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin-top: 15px; 
+            transition: background-color 0.3s;
+        }
+
+        .validate-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .validate-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            font-weight: normal;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .feedback-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback-incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .feedback-warning {
+            background-color: #fffbe6;
+            color: #8a6d3b;
+        }
+
+        .correct-answer {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb !important;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <div class="info-header">
+            <p><strong>Enseignant:</strong> Nguyễn Hoàng Vũ</p>
+            <p><strong>Ngày kiểm tra:</strong> <span id="test-date"></span></p>
+        </div>
+
+        <div class="quiz-status-bar">
+            <h1>Test: Động từ Nhóm 2 (-IR)</h1>
+            <div>
+                <span id="score-display">Điểm: 0 / 15</span>
+                <span id="timer-display">Thời gian: 15:00</span>
+            </div>
+        </div>
+        
+        <div id="all-questions-container">
+            <div class="question-block" id="q1">
+                <p class="question-text">1. Je ______ mon travail à 17h. (finir - hoàn thành)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q1" value="a"> a) finis</label>
+                    <label><input type="radio" name="q1" value="b"> b) finit</label>
+                    <label><input type="radio" name="q1" value="c"> c) finons</label>
+                    <label><input type="radio" name="q1" value="d"> d) finent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(1, 'a')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q2">
+                <p class="question-text">2. Vous ______ beaucoup de temps dans ce projet. (investir - đầu tư)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q2" value="a"> a) investis</label>
+                    <label><input type="radio" name="q2" value="b"> b) investit</label>
+                    <label><input type="radio" name="q2" value="c"> c) investissez</label>
+                    <label><input type="radio" name="q2" value="d"> d) investissons</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(2, 'c')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q3">
+                <p class="question-text">3. Tu ______ toujours la même chose au restaurant. (choisir - lựa chọn)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q3" value="a"> a) choisit</label>
+                    <label><input type="radio" name="q3" value="b"> b) choisissons</label>
+                    <label><input type="radio" name="q3" value="c"> c) choisissent</label>
+                    <label><input type="radio" name="q3" value="d"> d) choisis</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(3, 'd')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q4">
+                <p class="question-text">4. Le soleil ______ les vêtements. (blanchir - làm trắng)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q4" value="a"> a) blanchis</label>
+                    <label><input type="radio" name="q4" value="b"> b) blanchit</label>
+                    <label><input type="radio" name="q4" value="c"> c) blanchissent</label>
+                    <label><input type="radio" name="q4" value="d"> d) blanchissez</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(4, 'b')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q5">
+                <p class="question-text">5. Si on travaille dur, on ______ toujours. (réussir - thành công)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q5" value="a"> a) réussis</label>
+                    <label><input type="radio" name="q5" value="b"> b) réussissez</label>
+                    <label><input type="radio" name="q5" value="c"> c) réussit</label>
+                    <label><input type="radio" name="q5" value="d"> d) réussissons</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(5, 'c')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+             <div class="question-block" id="q6">
+                <p class="question-text">6. Les enfants ______ si vite ! (grandir - lớn lên)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q6" value="a"> a) grandit</label>
+                    <label><input type="radio" name="q6" value="b"> b) grandis</label>
+                    <label><input type="radio" name="q6" value="c"> c) grandissez</label>
+                    <label><input type="radio" name="q6" value="d"> d) grandissent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(6, 'd')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q7">
+                <p class="question-text">7. Nous ______ la bouteille d'eau avant de partir. (remplir - làm đầy)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q7" value="a"> a) remplissons</label>
+                    <label><input type="radio" name="q7" value="b"> b) remplissez</label>
+                    <label><input type="radio" name="q7" value="c"> c) remplit</label>
+                    <label><input type="radio" name="q7" value="d"> d) remplis</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(7, 'a')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q8">
+                <p class="question-text">8. Le public ______ l'artiste à la fin du spectacle. (applaudir - vỗ tay)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q8" value="a"> a) applaudissons</label>
+                    <label><input type="radio" name="q8" value="b"> b) applaudit</label>
+                    <label><input type="radio" name="q8" value="c"> c) applaudis</label>
+                    <label><input type="radio" name="q8" value="d"> d) applaudissez</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(8, 'b')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q9">
+                <p class="question-text">9. Les parents ______ leurs enfants quand ils font des bêtises. (punir - trừng phạt)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q9" value="a"> a) punis</label>
+                    <label><input type="radio" name="q9" value="b"> b) punit</label>
+                    <label><input type="radio" name="q9" value="c"> c) punissez</label>
+                    <label><input type="radio" name="q9" value="d"> d) punissent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(9, 'd')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q10">
+                <p class="question-text">10. Les ouvriers ______ un nouvel immeuble dans ma rue. (bâtir - xây dựng)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q10" value="a"> a) bâtis</label>
+                    <label><input type="radio" name="q10" value="b"> b) bâtissent</label>
+                    <label><input type="radio" name="q10" value="c"> c) bâtit</label>
+                    <label><input type="radio" name="q10" value="d"> d) bâtissons</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(10, 'b')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q11">
+                <p class="question-text">11. Tu ______ facilement quand on te fait un compliment. (rougir - đỏ mặt)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q11" value="a"> a) rougis</label>
+                    <label><input type="radio" name="q11" value="b"> b) rougit</label>
+                    <label><input type="radio" name="q11" value="c"> c) rougissez</label>
+                    <label><input type="radio" name="q11" value="d"> d) rougissons</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(11, 'a')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q12">
+                <p class="question-text">12. Vous ______ toujours aux règles. (obéir - vâng lời)</p>
+                 <div class="answers">
+                    <label><input type="radio" name="q12" value="a"> a) obéissons</label>
+                    <label><input type="radio" name="q12" value="b"> b) obéissez</label>
+                    <label><input type="radio" name="q12" value="c"> c) obéit</label>
+                    <label><input type="radio" name="q12" value="d"> d) obéissent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(12, 'b')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q13">
+                <p class="question-text">13. Avant de répondre, il ______ toujours quelques secondes. (réfléchir - suy nghĩ)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q13" value="a"> a) réfléchis</label>
+                    <label><input type="radio" name="q13" value="b"> b) réfléchit</label>
+                    <label><input type="radio" name="q13" value="c"> c) réfléchissons</label>
+                    <label><input type="radio" name="q13" value="d"> d) réfléchissent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(13, 'b')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q14">
+                <p class="question-text">14. Vous ______ avec courage. (agir - hành động)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q14" value="a"> a) agis</label>
+                    <label><input type="radio" name="q14" value="b"> b) agissons</label>
+                    <label><input type="radio" name="q14" value="c"> c) agissez</label>
+                    <label><input type="radio" name="q14" value="d"> d) agissent</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(14, 'c')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="question-block" id="q15">
+                <p class="question-text">15. Le médecin dit que je ______ bientôt. (guérir - chữa lành)</p>
+                <div class="answers">
+                    <label><input type="radio" name="q15" value="a"> a) guéris</label>
+                    <label><input type="radio" name="q15" value="b"> b) guérit</label>
+                    <label><input type="radio" name="q15" value="c"> c) guérissons</label>
+                    <label><input type="radio" name="q15" value="d"> d) guérissez</label>
+                </div>
+                <button class="validate-btn" onclick="validateRadio(15, 'a')">Valider</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        const maxScore = 15;
+        const scoreDisplay = document.getElementById('score-display');
+        let timeInSeconds = 900; // 15 minutes
+        let timerInterval = null;
+
+        const feedbackExplanations = {
+            1: "Chính xác! Động từ nhóm 2 'finir' (hoàn thành) chia với 'je' có đuôi '-is', thành 'finis'.",
+            2: "Chính xác! Động từ nhóm 2 'investir' (đầu tư) chia với 'vous' có đuôi '-issez', thành 'investissez'.",
+            3: "Chính xác! 'Choisir' (lựa chọn) chia với 'tu' có đuôi '-is', thành 'choisis'.",
+            4: "Chính xác! 'Le soleil' (mặt trời) tương đương ngôi 'il', động từ 'blanchir' (làm trắng) chia thành 'blanchit'.",
+            5: "Chính xác! Đại từ 'on' chia động từ giống như 'il/elle', nên 'réussir' (thành công) trở thành 'réussit'.",
+            6: "Chính xác! 'Les enfants' tương đương 'ils', động từ 'grandir' (lớn lên) chia thành 'grandissent'.",
+            7: "Chính xác! 'Remplir' (làm đầy) chia với 'nous' có đuôi '-issons', thành 'remplissons'.",
+            8: "Chính xác! 'Le public' là danh từ số ít (tương đương 'il'), nên 'applaudir' (vỗ tay) chia thành 'applaudit'.",
+            9: "Chính xác! 'Les parents' tương đương 'ils', động từ 'punir' (trừng phạt) chia thành 'punissent'.",
+            10: "Chính xác! 'Les ouvriers' tương đương 'ils', động từ 'bâtir' (xây dựng) chia thành 'bâtissent'.",
+            11: "Chính xác! Động từ 'rougir' (đỏ mặt) chia với 'tu' có đuôi '-is', thành 'rougis'.",
+            12: "Chính xác! Động từ 'obéir' (vâng lời) chia với 'vous' có đuôi '-issez', thành 'obéissez'.",
+            13: "Chính xác! Động từ 'réfléchir' (suy nghĩ) chia với 'il' ở thì hiện tại có đuôi '-it'.",
+            14: "Chính xác! Động từ 'agir' (hành động) chia với 'vous' có đuôi '-issez', thành 'agissez'.",
+            15: "Chính xác! Động từ 'guérir' (chữa lành) chia với 'je' ở thì hiện tại có đuôi '-is', thành 'guéris'."
+        };
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            document.getElementById('test-date').textContent = `${day}/${month}/${year}`;
+            
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function startTimer() {
+            const timerDisplay = document.getElementById('timer-display');
+            clearInterval(timerInterval); 
+            
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `Thời gian: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Hết giờ!";
+                    alert("Hết giờ làm bài!");
+                    document.querySelectorAll('.validate-btn').forEach(btn => btn.disabled = true);
+                }
+            }, 1000);
+        }
+
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `Điểm: ${score} / ${maxScore}`;
+        }
+        
+        function updateScore(points = 1) {
+            score += points;
+            updateScoreDisplay();
+        }
+
+        function validateRadio(questionNumber, correctAnswer) {
+            const questionBlock = document.getElementById(`q${questionNumber}`);
+            const radios = document.getElementsByName(`q${questionNumber}`);
+            const feedback = questionBlock.querySelector('.feedback');
+            const button = questionBlock.querySelector('.validate-btn');
+            let selectedAnswer = null;
+
+            radios.forEach(radio => { if (radio.checked) { selectedAnswer = radio; } });
+
+            if (selectedAnswer === null) {
+                feedback.textContent = "Vui lòng chọn một đáp án!";
+                feedback.className = 'feedback feedback-warning';
+                return;
+            }
+            
+            button.disabled = true;
+            radios.forEach(radio => radio.disabled = true);
+            const selectedLabel = selectedAnswer.parentElement;
+            const explanation = feedbackExplanations[questionNumber];
+
+            if (selectedAnswer.value === correctAnswer) {
+                feedback.textContent = explanation;
+                feedback.className = 'feedback feedback-correct';
+                selectedLabel.classList.add('correct-answer');
+                updateScore();
+            } else {
+                const cleanedExplanation = explanation.replace("Chính xác! ", "");
+                feedback.innerHTML = `<strong>Không chính xác.</strong> ${cleanedExplanation}<br>Đáp án đúng là lựa chọn <strong>"${correctAnswer.toUpperCase()}"</strong>.`;
+                feedback.className = 'feedback feedback-incorrect';
+                selectedLabel.classList.add('incorrect-answer');
+                radios.forEach(radio => { if (radio.value === correctAnswer) { radio.parentElement.classList.add('correct-answer'); } });
+            }
+        }
+    </script>
+</body>
+</html>
