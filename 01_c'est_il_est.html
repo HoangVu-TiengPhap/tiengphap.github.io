@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by anonymous (http://jsbin.com/xekeqoroyo/4/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice Interactif : C'est / Il est</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 0; 
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .top-info {
+            max-width: 800px;
+            margin: 20px auto 10px auto; 
+            padding: 0 20px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: right; /* Giữ căn phải cho thông tin giáo viên */
+        }
+
+        .main-header {
+            background-color: #fff; 
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-align: center; /* Tiêu đề chính vẫn căn giữa */
+            position: -webkit-sticky; 
+            position: sticky;
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+        
+        .main-header h1 {
+            color: #2c3e50; 
+            margin: 0; 
+            font-size: 1.8em;
+        }
+        .main-header .instructions {
+            font-size: 1em;
+            margin-top: 5px; 
+            margin-bottom: 0; 
+            font-style: italic;
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 5px;
+            width: 80%; 
+            /* Bỏ margin auto để instruction không bị căn giữa nếu muốn căn trái */
+            /* margin-left: auto; */ 
+            /* margin-right: auto; */
+            margin: 5px auto 0 auto; /* Đảm bảo vẫn căn giữa trong header nếu muốn */
+            color: #333; 
+        }
+        
+        .example-section {
+            background-color: #e9e9e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-size: 1em;
+            text-align: left; /* Căn trái nội dung trong phần ví dụ */
+        }
+        .example-section strong {
+            color: #007bff;
+        }
+        .example-line {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        .content-container {
+            max-width: 800px;
+            margin: 20px auto; /* Container chính vẫn căn giữa để có lề hai bên */
+            padding: 0 20px; 
+            text-align: left; /* Căn lề trái cho nội dung bên trong container */
+        }
+
+        .exercise-item {
+            margin-bottom: 25px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fcfcfc;
+            display: block; 
+            width: 100%; /* Cho item chiếm toàn bộ chiều rộng có sẵn */
+            /* Bỏ margin auto để căn trái */
+            margin-left: 0; 
+            margin-right: 0; 
+            box-sizing: border-box; /* Đảm bảo padding không làm tràn ra ngoài */
+        }
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: inline; 
+        }
+        .question-text input[type="text"] {
+            width: 80px; 
+            padding: 5px 8px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+            display: inline-block; 
+        }
+        .vietnamese-translation {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px; 
+            margin-bottom: 10px;
+            font-style: italic;
+            display: block; 
+        }
+        .check-button {
+            padding: 8px 15px;
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+            margin-top: 5px;
+        }
+        .check-button:hover {
+            background-color: #0056b3; 
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+            padding: 5px 10px; 
+            border-radius: 3px; 
+        }
+        .feedback.correct {
+            color: #1a7e3d; 
+            background-color: #e6ffe6; 
+            border: 1px solid #1a7e3d; 
+        }
+        .feedback.incorrect {
+            color: #b52b2b; 
+            background-color: #ffe6e6; 
+            border: 1px solid #b52b2b; 
+        }
+        .feedback.warning { 
+            color: #d19a00; 
+            background-color: #fffbe6; 
+            border: 1px solid #d19a00; 
+        }
+    </style>
+</head>
+<body>
+    <div class="top-info">
+        Enseignant: Nguyễn Hoàng Vũ <br>
+        Date: 25 Juin 2025
+    </div>
+
+    <div class="main-header">
+        <h1>Exercice : C'est / Il est (Elle est...)</h1>
+        <p class="instructions">
+            Complétez les phrases sau bằng cách sử dụng <strong>C'est, Ce sont, Il est, Elle est, Ils sont,</strong> hoặc <strong>Elles sont</strong>.
+            <br><em>(Điền vào chỗ trống C'est, Ce sont, Il est, Elle est, Ils sont, hoặc Elles sont.)</em>
+        </p>
+    </div>
+
+    <div class="content-container">
+        <div class="example-section">
+            <strong>Ví dụ:</strong>
+            <div class="example-line">
+                ... est un musicien. <input type="text" value="C'est" disabled style="width:70px;"> un musicien.
+            </div>
+            <div class="example-line">
+                ... est excellent. <input type="text" value="Il est" disabled style="width:70px;"> excellent.
+            </div>
+            <div class="vietnamese-translation"><em>(Đây là một nhạc sĩ. Anh ấy thì tuyệt vời.)</em></div>
+            <br>
+            <strong>Gợi ý:</strong>
+            <ul>
+                <li>Sử dụng <strong>C'est / Ce sont</strong> + mạo từ (un, une, des) + danh từ.</li>
+                <li>Sử dụng <strong>Il est / Elle est / Ils sont / Elles sont</strong> + tính từ (malade, intelligent, célèbre...) hoặc danh từ chỉ nghề nghiệp (journaliste, médecin...) khi không có mạo từ đi kèm.</li>
+            </ul>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                <div class="question-text">
+                    1. <input type="text" id="q1a" data-answer="c'est"> est un journaliste. <input type="text" id="q1b" data-answer="il est"> est italien.
+                </div>
+                <div class="vietnamese-translation">(... là một nhà báo. ... là người Ý.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q1a', 'c\'est', 'q1b', 'il est', 'q1-feedback')">Vérifier</button>
+                <div id="q1-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    2. <input type="text" id="q2a" data-answer="c'est"> est une hôtesse. <input type="text" id="q2b" data-answer="elle est"> est jolie.
+                </div>
+                <div class="vietnamese-translation">(... là một tiếp viên. ... thì xinh đẹp.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q2a', 'c\'est', 'q2b', 'elle est', 'q2-feedback')">Vérifier</button>
+                <div id="q2-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    3. <input type="text" id="q3a" data-answer="c'est"> est un médecin. <input type="text" id="q3b" data-answer="il est"> est connu.
+                </div>
+                <div class="vietnamese-translation">(... là một bác sĩ. ... thì nổi tiếng.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q3a', 'c\'est', 'q3b', 'il est', 'q3-feedback')">Vérifier</button>
+                <div id="q3-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    4. <input type="text" id="q4a" data-answer="c'est"> est un étudiant. <input type="text" id="q4b" data-answer="il est"> est intelligent.
+                </div>
+                <div class="vietnamese-translation">(... là một sinh viên. ... thì thông minh.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q4a', 'c\'est', 'q4b', 'il est', 'q4-feedback')">Vérifier</button>
+                <div id="q4-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    5. <input type="text" id="q5a" data-answer="c'est"> est un écrivain.
+                </div>
+                <div class="question-text">
+                    <input type="text" id="q5b" data-answer="il est"> est célèbre.
+                </div>
+                <div class="vietnamese-translation">(... là một nhà văn. ... thì nổi tiếng.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q5a', 'c\'est', 'q5b', 'il est', 'q5-feedback')">Vérifier</button>
+                <div id="q5-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    6. <input type="text" id="q6a" data-answer="c'est"> est une avocate.
+                </div>
+                <div class="question-text">
+                    <input type="text" id="q6b" data-answer="elle est"> est américaine.
+                </div>
+                <div class="vietnamese-translation">(... là một luật sư nữ. ... là người Mỹ.)</div>
+                <button class="check-button" onclick="checkMultipleAnswers('q6a', 'c\'est', 'q6b', 'elle est', 'q6-feedback')">Vérifier</button>
+                <div id="q6-feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkMultipleAnswers(inputId1, correctAnswer1, inputId2, correctAnswer2, feedbackId) {
+            const inputElement1 = document.getElementById(inputId1);
+            const inputElement2 = document.getElementById(inputId2);
+            const feedbackElement = document.getElementById(feedbackId);
+
+            const userAnswer1 = inputElement1.value.trim().toLowerCase();
+            const userAnswer2 = inputElement2.value.trim().toLowerCase();
+
+            feedbackElement.classList.remove('correct', 'incorrect', 'warning');
+            feedbackElement.style.display = 'block';
+
+            if (userAnswer1 === '' || userAnswer2 === '') {
+                feedbackElement.textContent = 'Bạn cần điền vào cả hai ô trống trước khi kiểm tra! (Please fill in both blanks before checking!)';
+                feedbackElement.classList.add('warning');
+                return;
+            }
+
+            // Xử lý trường hợp có apostrophe cho C'est và il/elle est
+            // C'est -> c'est hoặc cest
+            // Il est -> il est
+            // Elle est -> elle est
+            let isCorrect1 = (userAnswer1 === correctAnswer1.toLowerCase() || userAnswer1 === correctAnswer1.toLowerCase().replace("'", "")); 
+            let isCorrect2 = (userAnswer2 === correctAnswer2.toLowerCase() || userAnswer2 === correctAnswer2.toLowerCase().replace("'", ""));
+
+
+            if (isCorrect1 && isCorrect2) {
+                feedbackElement.textContent = 'Chính xác! (Correct!)';
+                feedbackElement.classList.add('correct');
+            } else {
+                let feedbackText = 'Chưa đúng. ';
+                if (!isCorrect1) {
+                    feedbackText += `Ô 1: Đáp án là "${correctAnswer1}". `;
+                }
+                if (!isCorrect2) {
+                    feedbackText += `Ô 2: Đáp án là "${correctAnswer2}".`;
+                }
+                feedbackText += ` (Incorrect. Correct answers are: "${correctAnswer1}" and "${correctAnswer2}".)`;
+                
+                feedbackElement.textContent = feedbackText;
+                feedbackElement.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>
