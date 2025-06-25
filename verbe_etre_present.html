@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by anonymous (http://jsbin.com/xekeqoroyo/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice Interactif : ÊTRE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 0; 
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .top-info {
+            max-width: 800px;
+            margin: 20px auto 10px auto; 
+            padding: 0 20px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: right;
+        }
+
+        .main-header {
+            background-color: #fff; 
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-align: center;
+            position: -webkit-sticky; 
+            position: sticky;
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+        
+        .main-header h1 {
+            color: #2c3e50; 
+            margin: 0; 
+            font-size: 1.8em;
+        }
+        .main-header .instructions {
+            font-size: 1em;
+            margin-top: 5px; 
+            margin-bottom: 0; 
+            font-style: italic;
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 5px;
+            width: 80%; 
+            margin-left: auto; 
+            margin-right: auto; 
+            color: #333; 
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 20px auto; 
+            padding: 0 20px; 
+        }
+
+        .exercise-item {
+            margin-bottom: 25px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fcfcfc;
+        }
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .question-text input[type="text"] {
+            width: 100px;
+            padding: 5px 8px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .vietnamese-translation {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        /* Nút kiểm tra - trở lại màu xanh lam ban đầu */
+        .check-button {
+            padding: 8px 15px;
+            background-color: #007bff; /* Màu xanh lam ban đầu */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+            margin-top: 5px;
+        }
+        .check-button:hover {
+            background-color: #0056b3; /* Xanh lam đậm hơn khi hover */
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+            padding: 5px 10px; 
+            border-radius: 3px; 
+        }
+        .feedback.correct {
+            color: #1a7e3d; 
+            background-color: #e6ffe6; 
+            border: 1px solid #1a7e3d; 
+        }
+        .feedback.incorrect {
+            color: #b52b2b; 
+            background-color: #ffe6e6; 
+            border: 1px solid #b52b2b; 
+        }
+        .feedback.warning { 
+            color: #d19a00; 
+            background-color: #fffbe6; 
+            border: 1px solid #d19a00; 
+        }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 40px;
+            border-left: 3px solid #ccc;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-info">
+        Enseignant: Nguyễn Hoàng Vũ <br>
+        Date: 25 Juin 2025
+    </div>
+
+    <div class="main-header">
+        <h1>Exercice : ÊTRE (Présent)</h1>
+        <p class="instructions">
+            Complétez les phrases suivantes en conjugant le verbe <strong>ÊTRE</strong> au présent de l'indicatif.
+            <br><em>(Hoàn thành các câu sau bằng cách chia động từ ÊTRE ở thì hiện tại.)</em>
+        </p>
+    </div>
+
+    <div class="content-container">
+        <div class="exercise-list">
+            <div class="exercise-item">
+                <div class="question-text">
+                    1. Moi, je <input type="text" id="q1" data-answer="suis"> blond.
+                </div>
+                <div class="vietnamese-translation">(Tôi thì, tôi tóc vàng.)</div>
+                <button class="check-button" onclick="checkAnswer('q1', 'suis', 'q1-feedback')">Vérifier</button>
+                <div id="q1-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    2. Toi, tu <input type="text" id="q2" data-answer="es"> brun.
+                </div>
+                <div class="vietnamese-translation">(Bạn thì, bạn tóc nâu.)</div>
+                <button class="check-button" onclick="checkAnswer('q2', 'es', 'q2-feedback')">Vérifier</button>
+                <div id="q2-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    3. Lui, il <input type="text" id="q3" data-answer="est"> malade.
+                </div>
+                <div class="vietnamese-translation">(Anh ấy thì, anh ấy bị ốm.)</div>
+                <button class="check-button" onclick="checkAnswer('q3', 'est', 'q3-feedback')">Vérifier</button>
+                <div id="q3-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    4. Elle, elle <input type="text" id="q4" data-answer="est"> fatiguée.
+                </div>
+                <div class="vietnamese-translation">(Cô ấy thì, cô ấy mệt mỏi.)</div>
+                <button class="check-button" onclick="checkAnswer('q4', 'est', 'q4-feedback')">Vérifier</button>
+                <div id="q4-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    5. Nous, nous <input type="text" id="q5" data-answer="sommes"> anglais.
+                </div>
+                <div class="vietnamese-translation">(Chúng tôi thì, chúng tôi là người Anh.)</div>
+                <button class="check-button" onclick="checkAnswer('q5', 'sommes', 'q5-feedback')">Vérifier</button>
+                <div id="q5-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    6. Vous, vous <input type="text" id="q6" data-answer="êtes"> français.
+                </div>
+                <div class="vietnamese-translation">(Bạn/Các bạn thì, bạn/các bạn là người Pháp.)</div>
+                <button class="check-button" onclick="checkAnswer('q6', 'êtes', 'q6-feedback')">Vérifier</button>
+                <div id="q6-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    7. Eux, ils <input type="text" id="q7" data-answer="sont"> petits.
+                </div>
+                <div class="vietnamese-translation">(Họ thì, họ nhỏ bé.)</div>
+                <button class="check-button" onclick="checkAnswer('q7', 'sont', 'q7-feedback')">Vérifier</button>
+                <div id="q7-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    8. Elles, elles <input type="text" id="q8" data-answer="sont"> grandes.
+                </div>
+                <div class="vietnamese-translation">(Họ thì, họ to lớn/cao lớn.)</div>
+                <button class="check-button" onclick="checkAnswer('q8', 'sont', 'q8-feedback')">Vérifier</button>
+                <div id="q8-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    9. Antonio et moi, nous <input type="text" id="q9" data-answer="sommes"> espagnols.
+                </div>
+                <div class="vietnamese-translation">(Antonio và tôi thì, chúng tôi là người Tây Ban Nha.)</div>
+                <button class="check-button" onclick="checkAnswer('q9', 'sommes', 'q9-feedback')">Vérifier</button>
+                <div id="q9-feedback" class="feedback"></div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="question-text">
+                    10. Pedro et Gloria, vous <input type="text" id="q10" data-answer="êtes"> brésiliens.
+                </div>
+                <div class="vietnamese-translation">(Pedro và Gloria thì, các bạn là người Brazil.)</div>
+                <button class="check-button" onclick="checkAnswer('q10', 'êtes', 'q10-feedback')">Vérifier</button>
+                <div id="q10-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <p class="note">
+            <strong>Lưu ý:</strong> <br>
+            - Các đại từ nhấn mạnh (Moi, Toi, Lui, Elle, Nous, Vous, Eux, Elles) thường được dùng để nhấn mạnh chủ ngữ hoặc trong các trường hợp đặc biệt. <br>
+            - "blond/brun": màu tóc (vàng/nâu). <br>
+            - "petit/grand": nhỏ/lớn (có thể ám chỉ chiều cao).
+        </p>
+    </div>
+
+    <script>
+        function checkAnswer(inputId, correctAnswer, feedbackId) {
+            const inputElement = document.getElementById(inputId);
+            const feedbackElement = document.getElementById(feedbackId);
+            const userAnswer = inputElement.value.trim().toLowerCase(); 
+
+            // Xóa các class cũ và hiển thị feedback
+            feedbackElement.classList.remove('correct', 'incorrect', 'warning'); 
+            feedbackElement.style.display = 'block';
+
+            // Kiểm tra nếu ô input trống
+            if (userAnswer === '') {
+                feedbackElement.textContent = 'Bạn cần điền vào ô trống trước khi kiểm tra! (Please fill in the blank before checking!)';
+                feedbackElement.classList.add('warning'); 
+                return; 
+            }
+
+            // Nếu không trống, tiếp tục kiểm tra đáp án
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                feedbackElement.textContent = 'Chính xác! (Correct!)';
+                feedbackElement.classList.add('correct');
+            } else {
+                feedbackElement.textContent = `Chưa đúng. Đáp án là: ${correctAnswer}. (Incorrect. The correct answer is: ${correctAnswer}.)`;
+                feedbackElement.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>
